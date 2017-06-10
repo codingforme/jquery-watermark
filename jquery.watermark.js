@@ -52,7 +52,7 @@
             ctx.drawImage(can2, 0, settings.height, settings.canvasWidth, settings.height);
             var dataURL = canAll.toDataURL("image/png");
             $(this.elem).css('backgroundImage', "url("+ dataURL +")");
-            this.__destory();
+            //this.__destory();
         },
         __createCanvas : function($container){
             var canvas = document.createElement('canvas');
@@ -92,13 +92,14 @@
            
             var ctx = canvas.getContext('2d');
             if(!notextstyle){
-                var deg = this.options.deg;
+                var deg = this.options.deg,
+                    absSindeg = Math.abs(Math.sin(deg));
                 ctx.rotate(deg);
                 //基于视窗的 x、y偏移量
-                var offset = Math.abs(Math.tan(deg)) * this.options.height - this.options.textHeight * Math.abs(Math.sin(deg));
+                var offset = absSindeg * this.options.height - this.options.textHeight * absSindeg;
                 var nx = - offset * Math.cos(deg),
-                    ny = - nx * Math.tan(deg);
-                ctx.translate( nx, ny / 2);
+                    ny = - offset * absSindeg;
+                ctx.translate( nx, ny * absSindeg);
 
                 ctx.font = this.options.textFont; 
                 ctx.fillStyle = this.options.textColor;
