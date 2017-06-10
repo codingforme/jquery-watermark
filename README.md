@@ -12,4 +12,4 @@ $('body').watermark({
 });
 ```
 ## 效果
-![](http://www.baidu.com/img/bdlogo.gif "百度logo")  
+![](https://github.com/codingforme/jquery-watermark/blob/master/screenshot.png "水印效果")  
